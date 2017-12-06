@@ -29,7 +29,7 @@ export class SwitchComponent implements OnInit {
           let res = response.json();
         });
       })
-    } else if (light.Type === "Scene" or light.Type === "Group") {
+    } else if (light.Type === "Scene" || light.Type === "Group") {
       console.log('hoi')
       this.lightingService.getScene(light.idx).subscribe(response => {
         console.log(response);
