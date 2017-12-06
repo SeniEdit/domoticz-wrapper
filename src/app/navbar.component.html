@@ -1,0 +1,5 @@
+<div class="navbar">
+  <a class="navtab" *ngFor="let route of tabs" (click)="onTabSelect(route.path)" id="tab/{{route.path}}">
+    <i class="material-icons">{{route.data.icon}}</i>
+  </a>
+</div>

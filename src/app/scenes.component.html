@@ -1,0 +1,16 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="row header">
+  <p>Scenes</p>
+</div>
+  <div class="container">
+    <div class="row">
+      <div class="column s6" *ngFor="let scene of scenes">
+        <div *ngIf="scenes">
+          <switchButton [light]="scene" [data]="scene.Data"></switchButton>
+        </div>
+      </div>
+      <div *ngIf="!scenes">
+        <h5>No scenes found, please check your <a routerLink="/settings">settings</a> if your server has been set up correctly.</h5>
+      </div>
+    </div>
+  </div>
