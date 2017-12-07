@@ -15,7 +15,7 @@ export class SwitchComponent implements OnInit {
 
   toggle(light): void {
     console.log(light);
-    if (light.Type === "Light/Switch") {
+    if (light.Type === "Light/Switch" || light.Type === "Lighting 1") {
       this.lightingService.getSwitch(light.idx).subscribe(response => {
         let resp = response.json();
         if (resp.result[0].Data === "Off") {
