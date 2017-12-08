@@ -10,16 +10,19 @@ import { Light } from './light';
 })
 export class LightsComponent implements OnInit {
   lights;
+  loading;
 
   constructor(private lightingService: LightingService){}
 
   setSwitches(): void {
     this.lightingService.getAllSwitches().subscribe(lights => {
       this.lights = lights;
+      this.loading = false;
     });
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.setSwitches();
   }
 }

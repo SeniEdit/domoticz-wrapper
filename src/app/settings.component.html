@@ -5,13 +5,22 @@
   <p>Server</p>
 </div>
 <div class="container">
-  <div class="row">
-    <div class="column">
-      <label for="serverUrl">Server address</label>
-      <input name="serverUrl" [(ngModel)]="serverUrlFromDb" #serverUrl value="http://"><br>
-      <label for="serverPort">Port</label>
-      <input name="serverPort" [(ngModel)]="serverPortFromDb" #serverPort><br>
-      <button (click)="onSave(serverUrl.value, serverPort.value)">Save settings</button>
+  <div class="form">
+    <div class="row">
+      <div class="column s6">
+        <label for="serverProtocol">Protocol</label><br>
+        <label for="serverUrl">Server address</label><br>
+        <label for="serverPort">Port</label>
+      </div>
+      <div class="column s6">
+        <select name="serverProtocol" [(ngModel)]="serverProtocolFromDb" #serverProtocol>
+          <option value="Http">Http</option>
+          <option value="Https">Https</option>
+        </select><br>
+        <input name="serverUrl" [(ngModel)]="serverUrlFromDb" #serverUrl style="max-width: 125px"><br>
+        <input name="serverPort" [(ngModel)]="serverPortFromDb" #serverPort style="max-width: 125px"><br>
+      </div>
+      <button (click)="onSave(serverProtocol.value, serverUrl.value, serverPort.value)">Save settings</button>
     </div>
   </div>
 </div>

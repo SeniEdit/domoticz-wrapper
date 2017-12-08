@@ -12,7 +12,6 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router){
     router.events.subscribe(event => {
     if(event instanceof NavigationStart) {
-        console.log(event.url)
         let thisTab = document.getElementById('tab' + event.url);
         let allTabs = document.querySelectorAll('.navtab');
         for (let i = 0; i < allTabs.length; i++) {

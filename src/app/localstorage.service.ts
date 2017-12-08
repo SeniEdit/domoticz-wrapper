@@ -10,6 +10,18 @@ export class LocalstorageService {
 
   constructor() {}
 
+  setServerProtocol(protocol): void {
+    localStorage.setItem("serverProtocol", protocol);
+  }
+
+  getServerProtocol(): string {
+    if (localStorage.getItem("serverProtocol") === "" || localStorage.getItem("serverProtocol") === null || typeof localStorage.getItem("serverProtocol") === "undefined") {
+      return "Http";
+    } else {
+      return localStorage.getItem("serverProtocol");
+    }
+  }
+
   setServerUrl(url): void {
     localStorage.setItem("serverUrl", url);
   }

@@ -1,13 +1,14 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'dashboard',
-  templateUrl: './dashboard.component.html',
+  selector: 'modal',
+  templateUrl: './modal.component.html',
   styleUrls: ['./app.component.css']
 })
-export class DashboardComponent {
+export class ModalComponent {
+  constructor(){}
 
-  test() {
+  close() {
     const modal = document.getElementById('modal');
     const overlay = document.getElementById('overlay');
 

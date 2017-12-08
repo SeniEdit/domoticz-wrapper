@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard.component';
 import { LightsComponent } from './lights.component';
 import { ScenesComponent } from './scenes.component';
 import { SwitchComponent } from './switch.component';
+import { ModalComponent } from './modal.component';
 import { LightingService } from './lighting.service';
 import { LocalstorageService } from './localstorage.service';
 
@@ -19,8 +20,7 @@ import { SettingsComponent } from './settings.component';
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, data: {icon: "home"} },
   { path: 'settings', component: SettingsComponent, data: {icon: "settings"} },
-  { path: '**', component: LightsComponent }
-];
+  { path: '**', component: DashboardComponent }] // 404
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ const routes: Routes = [
     SettingsComponent,
     LightsComponent,
     ScenesComponent,
-    DashboardComponent
+    DashboardComponent,
+    ModalComponent
   ],
   imports: [
     RouterModule.forRoot(

@@ -2,6 +2,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 25px;
+  overflow-x: hidden;
   margin: 0;
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */

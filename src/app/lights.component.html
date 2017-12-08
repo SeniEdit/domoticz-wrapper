@@ -3,7 +3,10 @@
   <p>Switches</p>
 </div>
   <div class="container">
-    <div class="row">
+    <div *ngIf="loading === true">
+      <h3>Loading...</h3>
+    </div>
+    <div *ngIf="loading === false" class="row">
       <div class="column s6" *ngFor="let light of lights">
         <div *ngIf="lights">
           <switchButton [light]="light" [data]="light.Data"></switchButton>

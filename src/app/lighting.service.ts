@@ -14,31 +14,31 @@ export class LightingService {
   }
 
   getAllSwitches(): Observable<Light> {
-    return this.http.get(this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=devices&filter=light&used=true&order=Name&favorite=1').map(res => {
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=devices&filter=light&used=true&order=Name&favorite=1').map(res => {
       return res.json().result;
     });
   }
 
   getSwitch(idx) {
-    return this.http.get(this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=devices&rid=' + idx);
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=devices&rid=' + idx);
   }
 
   toggleSwitch(idx, toggle) {
-    return this.http.get(this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=command&param=switchlight&idx=' + idx + '&switchcmd=' + toggle);
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=command&param=switchlight&idx=' + idx + '&switchcmd=' + toggle);
   }
 
   getAllScenes(): Observable<Light> {
-    return this.http.get(this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=scenes').map(res => {
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=scenes').map(res => {
       return res.json().result;
     });
   }
 
   getScene(idx) {
-    return this.http.get(this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=scenes&rid=' + idx);
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=scenes&rid=' + idx);
   }
 
-  toggleScene(idx, toggle) {
-    return this.http.get(this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=command&param=switchscene&idx=' + idx + '&switchcmd=' + toggle);
+  triggerScene(idx) {
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=command&param=switchscene&idx=' + idx + '&switchcmd=On');
   }
 
   private handleError(error: any): Promise<any> {

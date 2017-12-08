@@ -1,0 +1,25 @@
+{
+  "short_name": "Domoticz Wrapper",
+  "name": "Better Domoticz",
+  "icons": [
+    {
+      "src": "launcher-icon-1x.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "launcher-icon-2x.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "launcher-icon-4x.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/dashboard",
+  "background_color": "#2196F3",
+  "display": "standalone",
+  "orientation": "portrait"
+}
