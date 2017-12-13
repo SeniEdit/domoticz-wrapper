@@ -11,6 +11,7 @@
         <label for="serverProtocol">Protocol</label><br>
         <label for="serverUrl">Server address</label><br>
         <label for="serverPort">Port</label>
+        <br>
       </div>
       <div class="column s6">
         <select name="serverProtocol" [(ngModel)]="serverProtocolFromDb" #serverProtocol>
@@ -19,8 +20,43 @@
         </select><br>
         <input name="serverUrl" [(ngModel)]="serverUrlFromDb" #serverUrl style="max-width: 125px"><br>
         <input name="serverPort" [(ngModel)]="serverPortFromDb" #serverPort style="max-width: 125px"><br>
+        <button (click)="onSave(serverProtocol.value, serverUrl.value, serverPort.value)">Save settings</button>
       </div>
-      <button (click)="onSave(serverProtocol.value, serverUrl.value, serverPort.value)">Save settings</button>
     </div>
   </div>
 </div>
+<div class="row header">
+  <p>Authorization</p>
+</div>
+<div class="container">
+  <div class="form">
+    <div class="row">
+      <div class="column s6">
+        <label for="username">Username</label><br>
+        <label for="password">Password</label><br>
+        <br>
+      </div>
+      <div class="column s6">
+        <input name="username" [(ngModel)]="usernameFromDb" #username style="max-width: 125px"><br>
+        <input type="password" name="password" #password style="max-width: 125px"><br>
+        <button (click)="onSaveAuth(username.value, password.value)">Save settings</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row header">
+  <p>Preferences</p>
+</div>
+<div class="container">
+  <div class="form">
+    <div class="row">
+      <div class="column s6">
+        <label for="darkMode">Dark mode</label><br>
+      </div>
+      <div class="column s6">
+        <input type="checkbox" [(ngModel)]="darkMode" (change)="toggleDarkMode()">
+      </div>
+    </div>
+  </div>
+</div>
+<app-toast [class.active]="toastActive" message="{{message}}"></app-toast>

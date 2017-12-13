@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'modal',
+  selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./app.component.css']
 })
 export class ModalComponent {
-  constructor(){}
+
+  constructor() { }
 
   close() {
     const modal = document.getElementById('modal');

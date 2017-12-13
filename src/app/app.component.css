@@ -8,6 +8,7 @@ i {
 }
 
 .navbar {
+  z-index: 999;
   height: 64px;
   background-color: aliceblue;
   flex: 1;
@@ -20,36 +21,45 @@ i {
   width: 100vw;
 }
 
+.navbar.darkMode {
+  background-color: #3e3e3e;
+}
+
 .navtab {
-  opacity: 0.2;
   width: 100%;
   flex: 1;
   justify-content: center;
   align-items: center;
   text-align: center;
+  border-bottom: 7px aliceblue solid;
   transition: ease-in-out 0.2s;
+}
+
+.navtab.darkMode {
+  border-bottom: 7px #3e3e3e solid;
 }
 
 .navtab.active {
   color: green;
-  opacity: 1;
+  border-bottom: 7px green solid;
 }
 
 .navtab:hover {
-  opacity: 1;
   transition: ease-in-out 0.2s;
 }
 
 .row {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
   flex-wrap: wrap;
 }
 
 .row.header {
+  top: -1px;
+  position: sticky;
   font-family: Raleway;
   justify-content: flex-start;
   background-color: #f3f3f3;
@@ -60,6 +70,22 @@ i {
   margin: 5px 0 5px 10%;
 }
 
+.row.header > a {
+  right: 10%;
+  position: absolute;
+  line-height: 40px;
+}
+
+.row.header > a > i {
+  line-height: 41px;
+  transition: ease-in-out 0.2s;
+}
+
+.row.header > a > i.active {
+  color: green;
+  transition: ease-in-out 0.2s;
+}
+
 .row.header.title {
   background-color: #7b7b7b;
 }
@@ -67,6 +93,12 @@ i {
 .row.header > h4 {
   color: #FFF;
   margin: 1% 5%;
+}
+
+.row.header.darkMode {
+  color: white;
+  background-color: #464646;
+  box-shadow: none;
 }
 
 .fab {
@@ -91,12 +123,14 @@ i {
 }
 
 .lightCard {
+  color: black;
   font-size: 22px;
+  line-height: 50px;
   text-align: center;
   display: block;
-  width: 80%;
+  width: 90%;
   height: 50px;
-  border-radius: 2%;
+  border-radius: 5px;
   margin: 5% auto;
   padding: 3%;
   background-color: #f2f2f2;
@@ -105,7 +139,8 @@ i {
 }
 
 .lightCard.active {
-  background-color: #7fc90866;
+  background-color: green;
+  color: white;
 }
 
 .column {
@@ -121,7 +156,11 @@ i {
   height: 100%;
 }
 
-modal {
+.message {
+  margin: 1em;
+}
+
+app-modal {
   visibility:visible;
   top: 5%;
   margin: 1% 5%;
@@ -136,7 +175,7 @@ modal {
   box-shadow: 0px 3px 10px 0px #7f7c7c85;
 }
 
-modal.hidden {
+app-modal.hidden {
   visibility:hidden;
   opacity: 0;
   transition: visibility 0.2s, opacity 0.2s ease-in-out;
@@ -181,12 +220,63 @@ modal.hidden {
 
 .form {
   max-width: 100%;
-  margin-top: 1em;
-  margin-left: 1em;
+  margin: 1em;
 }
 
 .form .row {
   width: calc(100% - 2em);
+}
+
+button {
+  opacity: 1;
+  border: 1px solid black;
+  color: black;
+  background-color: white;
+  border-radius: 3px;
+  height: 35px;
+  width: 130px;
+  margin: 1em 0 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+button.darkMode {
+  border: 1px solid white;
+  color: white;
+  background-color: black;
+}
+
+button:hover {
+  opacity: 0.7;
+  transition: opacity 0.2s ease-in-out;
+}
+
+app-toast {
+  z-index: 999;
+  opacity: 0;
+  color: white;
+  left: 0;
+  bottom: 64px;
+  position: fixed;
+  margin: 0 auto;
+  width: 100%;
+  background-color: #c3c3c3;
+  height: 44px;
+  line-height: 44px;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s ease-in-out;
+}
+
+p.toast {
+  margin: 0;
+}
+
+app-toast.active {
+  opacity: 1;
+  display: block;
+  transition: opacity 0.2s ease-in-out;
 }
 
 @media only screen and (min-width: 768px){
@@ -196,6 +286,10 @@ modal.hidden {
 
   .column {
     width: 50%;
+  }
+
+  .column.m3 {
+    width: 25%!important;
   }
 
   .container {

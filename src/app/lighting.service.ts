@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import 'rxjs/add/operator/map'
 import { Observable } from 'rxjs';
@@ -8,37 +8,69 @@ import { LocalstorageService } from './localstorage.service';
 
 @Injectable()
 export class LightingService {
-  //http://145.90.93.147:6144
+  private authHeader;
+  private auth;
 
   constructor(private http: Http, private myStorage: LocalstorageService) {
+    this.auth = this.myStorage.getAuthorization();
+    this.authHeader = `Basic ${this.auth}`;
+  }
+
+  setAuthHeader(): void {
+    this.auth = this.myStorage.getAuthorization();
+    this.authHeader = `Basic ${this.auth}`;
   }
 
   getAllSwitches(): Observable<Light> {
-    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=devices&filter=light&used=true&order=Name&favorite=1').map(res => {
+    this.setAuthHeader();
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', this.authHeader);
+    const options = new RequestOptions({ headers: myHeaders });
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=devices&filter=light&used=true&order=Name', options).map(res => {
       return res.json().result;
     });
   }
 
   getSwitch(idx) {
-    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=devices&rid=' + idx);
+    this.setAuthHeader();
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', this.authHeader);
+    const options = new RequestOptions({ headers: myHeaders });
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=devices&rid=' + idx, options);
   }
 
   toggleSwitch(idx, toggle) {
-    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=command&param=switchlight&idx=' + idx + '&switchcmd=' + toggle);
+    this.setAuthHeader();
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', this.authHeader);
+    const options = new RequestOptions({ headers: myHeaders });
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=command&param=switchlight&idx=' + idx + '&switchcmd=' + toggle, options);
   }
 
   getAllScenes(): Observable<Light> {
-    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=scenes').map(res => {
+    this.setAuthHeader();
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', this.authHeader);
+    const options = new RequestOptions({ headers: myHeaders });
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=scenes', options).map(res => {
       return res.json().result;
     });
   }
 
   getScene(idx) {
-    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=scenes&rid=' + idx);
+    this.setAuthHeader();
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', this.authHeader);
+    const options = new RequestOptions({ headers: myHeaders });
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=scenes&rid=' + idx, options);
   }
 
   triggerScene(idx) {
-    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=command&param=switchscene&idx=' + idx + '&switchcmd=On');
+    this.setAuthHeader();
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', this.authHeader);
+    const options = new RequestOptions({ headers: myHeaders });
+    return this.http.get(this.myStorage.getServerProtocol() + '://' + this.myStorage.getServerUrl() + ':' + this.myStorage.getServerPort() + '/json.htm?type=command&param=switchscene&idx=' + idx + '&switchcmd=On', options);
   }
 
   private handleError(error: any): Promise<any> {

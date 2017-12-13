@@ -1,28 +1,76 @@
 import { Component, OnInit} from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { LocalstorageService } from './localstorage.service';
 import { LightingService } from './lighting.service';
 import { Light } from './light';
 
 @Component({
-  selector: 'lights',
+  selector: 'app-lights',
   templateUrl: './lights.component.html',
   styleUrls: ['./app.component.css']
 })
 export class LightsComponent implements OnInit {
+  allLights;
   lights;
   loading;
+  error = false;
+  favorites = false;
+  public toastActive = false;
 
-  constructor(private lightingService: LightingService){}
+  constructor(private lightingService: LightingService, private myStorage: LocalstorageService) { }
+
+  toggleToastVisible() {
+    this.toastActive = true;
+    setTimeout(() => {
+      this.toastActive = false;
+    }, 5000);
+  }
+
+  isFavorite(light) {
+    return light.Favorite === 1;
+  }
+
+  toggleFavorites() {
+    this.favorites = !this.favorites;
+    this.setStorage(this.favorites);
+    if (this.favorites === true) {
+      this.filterFavorites();
+    } else {
+      this.lights = this.allLights;
+    }
+    this.toggleToastVisible();
+  }
+
+  filterFavorites(): void {
+    this.lights = this.lights.filter(this.isFavorite);
+  }
 
   setSwitches(): void {
     this.lightingService.getAllSwitches().subscribe(lights => {
+      this.allLights = lights;
       this.lights = lights;
+      if (this.favorites === true) {
+        this.filterFavorites();
+      }
       this.loading = false;
+    },
+    err => {
+      this.loading = false;
+      this.error = true;
     });
+  }
+
+  getFromStorage() {
+    this.favorites = this.myStorage.getSwitchesFavorite();
+  }
+
+  setStorage(favorite) {
+    this.myStorage.setSwitchesFavorite(favorite);
   }
 
   ngOnInit(): void {
     this.loading = true;
     this.setSwitches();
+    this.getFromStorage();
   }
 }

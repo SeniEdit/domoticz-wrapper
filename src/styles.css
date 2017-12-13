@@ -9,3 +9,12 @@ body {
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
 }
+
+html {
+  height: 100%;
+}
+
+html.darkMode {
+  background-color: black;
+  color: white;
+}
