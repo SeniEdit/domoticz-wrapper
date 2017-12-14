@@ -3,14 +3,11 @@
     <span>{{title}}</span>
   </div>
   <div class="modal-content">
-    <p>
-      {{content}}
-    </p>
     <ul class="modal-collection">
-      <li (click)="filterBy('statusOn')">Status: On</li>
-      <li (click)="filterBy('statusOff')">Status: Off</li>
-      <li (click)="filterBy('favorites')">Favorites only</li>
-      <li (click)="filterBy('all')">All {{itemType}}</li>
+      <li *ngIf="itemType === 'switches'" class="collection-item" (click)="filterBy('statusOn')">Status: On / Open</li>
+      <li *ngIf="itemType === 'switches'" class="collection-item" (click)="filterBy('statusOff')">Status: Off / Closed</li>
+      <li class="collection-item" (click)="filterBy('favorites')">Favorites only</li>
+      <li class="collection-item" (click)="filterBy('all')">All {{itemType}}</li>
     </ul>
   </div>
   <div class="modal-action">

@@ -15,10 +15,9 @@ export class DashboardComponent implements OnInit {
     const navbar = document.getElementsByClassName('navbar')[0];
     const navtabs = document.getElementsByClassName('navtab');
     const buttons = document.getElementsByTagName('button');
-    const modal = document.getElementsByTagName('app-modal')[0];
+    const modals = document.getElementsByTagName('app-modal');
 
     if (this.myStorage.getDarkMode() === true) {
-      modal.classList.add('darkMode');
       document.getElementsByTagName('html')[0].classList.add('darkMode');
       for (let i = 0; i < rowHeaders.length; i++ ) {
         rowHeaders[i].classList.add('darkMode');
@@ -26,18 +25,23 @@ export class DashboardComponent implements OnInit {
       for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.add('darkMode');
       }
+      for (let i = 0; i < modals.length; i++ ) {
+        modals[i].classList.add('darkMode');
+      }
       for (let i = 0; i < navtabs.length; i++) {
         navtabs[i].classList.add('darkMode');
       }
       navbar.classList.add('darkMode');
     } else {
-      modal.classList.remove('darkMode');
       document.getElementsByTagName('html')[0].classList.remove('darkMode');
       for (let i = 0; i < rowHeaders.length; i++ ) {
         rowHeaders[i].classList.remove('darkMode');
       }
       for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.remove('darkMode');
+      }
+      for (let i = 0; i < modals.length; i++ ) {
+        modals[i].classList.remove('darkMode');
       }
       for (let i = 0; i < navtabs.length; i++) {
         navtabs[i].classList.remove('darkMode');

@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="row header subheader">
   <p>Scenes & groups</p>
-  <a (click)="toggleFavorites()"><i [class.active]="favorites" class="material-icons">filter_list</i></a>
+  <a (click)="toggleModal()"><i [class.active]="filtered" class="material-icons">filter_list</i></a>
 </div>
   <div class="container">
     <div *ngIf="loading === true">
@@ -13,12 +13,14 @@
           <app-switch-button [light]="scene" [data]="scene.Data"></app-switch-button>
         </div>
       </div>
-      <div *ngIf="scenes && scenes.length === 0 && favorites === true">
-        <h5 class="message">No scenes found, add some scenes to your favorites to show them here.</h5>
+      <div *ngIf="scenes && scenes.length === 0 && filtered === true">
+        <h5 class="message">No scenes found!</h5>
       </div>
       <div *ngIf="error === true">
         <h5 class="message">No scenes found, please check your <a routerLink="/settings">settings</a> if your server has been set up correctly.</h5>
       </div>
     </div>
   </div>
-  <app-toast [class.active]="toastActive" message="{{favorites === true ? 'Show favorite scenes only' : 'Show all scenes'}}"></app-toast>
+  <div id="scene-overlay" class="modal-overlay hidden" (click)="toggleModal()"></div>
+  <app-modal id="scene-modal" class="hidden" title="Filter scenes" itemType="scenes"></app-modal>
+  <app-toast [class.active]="toastActive" message="{{message}}"></app-toast>

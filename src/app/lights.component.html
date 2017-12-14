@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="row header subheader">
   <p>Switches</p>
-  <a (click)="openModal()"><i [class.active]="favorites" class="material-icons">filter_list</i></a>
+  <a (click)="toggleModal()"><i [class.active]="filtered" class="material-icons">filter_list</i></a>
 </div>
   <div class="container">
     <div *ngIf="loading === true">
@@ -13,14 +13,14 @@
           <app-switch-button [light]="light" [data]="light.Data"></app-switch-button>
         </div>
       </div>
-      <div *ngIf="lights && lights.length === 0 && favorites === true">
-        <h5 class="message">No switches found, add some lights to your favorites to show them here.</h5>
+      <div *ngIf="lights && lights.length === 0 && filtered === true">
+        <h5 class="message">No switches found!</h5>
       </div>
       <div *ngIf="error === true">
         <h5 class="message">No switches found, please check your <a routerLink="/settings">settings</a> if your server has been set up correctly.</h5>
       </div>
     </div>
   </div>
-  <div id="overlay" class="modal-overlay hidden"></div>
-  <app-modal id="modal" class="hidden" title="Filter switches" content="Filter switches" itemType="switches"></app-modal>
-  <app-toast [class.active]="toastActive" message="{{favorites === true ? 'Show favorite switches only' : 'Show all switches'}}"></app-toast>
+  <div id="switch-overlay" class="modal-overlay hidden" (click)="toggleModal()"></div>
+  <app-modal id="switch-modal" class="hidden" title="Filter switches" itemType="switches"></app-modal>
+  <app-toast [class.active]="toastActive" message="{{message}}"></app-toast>

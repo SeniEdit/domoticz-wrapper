@@ -43,7 +43,7 @@ const routes: Routes = [
     HttpModule,
     FormsModule,
   ],
-  providers: [LightingService, LocalstorageService],
+  providers: [LightingService, LocalstorageService, LightsComponent, ScenesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

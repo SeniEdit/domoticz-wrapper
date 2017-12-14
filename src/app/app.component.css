@@ -202,7 +202,7 @@ app-modal.hidden {
   flex-direction: column;
 }
 
-.modal-collection > li {
+.collection-item {
   border-bottom: 1px solid white;
   margin: 10px 0;
   display: flex;
@@ -279,12 +279,12 @@ button:hover {
 }
 
 app-toast {
-  z-index: 999;
+  z-index: 996;
   opacity: 0;
   color: white;
   left: 0;
   visibility: hidden;
-  bottom: 64px;
+  bottom: 0px;
   position: fixed;
   margin: 0 auto;
   width: 100%;
@@ -295,7 +295,7 @@ app-toast {
   text-align: center;
   justify-content: center;
   align-items: center;
-  transition: visibility 0s, opacity 0.2s ease-in-out;
+  transition: bottom 0.2s, visibility 0.2s, opacity 0.2s ease-in-out;
 }
 
 p.toast {
@@ -303,9 +303,10 @@ p.toast {
 }
 
 app-toast.active {
+  bottom: 64px;
   opacity: 1;
   visibility: visible;
-  transition: visibility 0s, opacity 0.2s ease-in-out;
+  transition: bottom 0.2s, visibility 0.2s, opacity 0.2s ease-in-out;
 }
 
 @media only screen and (min-width: 768px){

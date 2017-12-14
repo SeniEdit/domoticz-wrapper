@@ -14,8 +14,9 @@ export class LightsComponent implements OnInit {
   lights;
   loading;
   error = false;
-  favorites = false;
+  filtered = false;
   public toastActive = false;
+  message = '';
 
   constructor(private lightingService: LightingService, private myStorage: LocalstorageService) { }
 
@@ -26,37 +27,50 @@ export class LightsComponent implements OnInit {
     }, 5000);
   }
 
-  isFavorite(light) {
-    return light.Favorite === 1;
-  }
-
-  toggleFavorites() {
-    this.favorites = !this.favorites;
-    this.setStorage(this.favorites);
-    if (this.favorites === true) {
-      this.filterFavorites();
-    } else {
-      this.lights = this.allLights;
-    }
-    this.toggleToastVisible();
-  }
-
-  filterFavorites(): void {
-    this.lights = this.lights.filter(this.isFavorite);
-  }
-
   public filterBy(filterType): void {
-    //this.lights.filter(filterType);
-    this.toggleFavorites();
+    this.lightingService.getAllSwitches().subscribe(lights => {
+      this.allLights = lights;
+
+      switch (filterType) {
+        case 'statusOn':
+          this.filtered = true;
+          this.lights = this.allLights.filter(light => (light.Data === 'On' || light.Data === 'Open'));
+          this.message = 'Show active switches';
+          this.toggleToastVisible();
+          break;
+        case 'statusOff':
+          this.filtered = true;
+          this.lights = this.allLights.filter(light => (light.Data === 'Off' || light.Data === 'Closed'));
+          this.message = 'Show inactive switches';
+          this.toggleToastVisible();
+          break;
+        case 'favorites':
+          this.filtered = true;
+          this.lights = this.allLights.filter(light => light.Favorite === 1);
+          this.message = 'Show favorite switches';
+          this.toggleToastVisible();
+          break;
+        case 'all':
+          this.filtered = false;
+          this.lights = this.allLights;
+          this.message = 'Show all switches';
+          this.toggleToastVisible();
+          break;
+        default:
+          this.filtered = false;
+          this.lights = this.allLights;
+          this.message = 'Show all switches';
+          this.toggleToastVisible();
+          break;
+        }
+    });
+    this.toggleModal();
   }
 
   setSwitches(): void {
     this.lightingService.getAllSwitches().subscribe(lights => {
       this.allLights = lights;
       this.lights = lights;
-      if (this.favorites === true) {
-        this.filterFavorites();
-      }
       this.loading = false;
     },
     err => {
@@ -65,9 +79,10 @@ export class LightsComponent implements OnInit {
     });
   }
 
-  openModal() {
-    const modal = document.getElementById('modal');
-    const overlay = document.getElementById('overlay');
+  toggleModal() {
+    const modal = document.getElementById('switch-modal');
+    console.log(modal);
+    const overlay = document.getElementById('switch-overlay');
     const body = document.getElementsByTagName('body')[0];
 
     if (modal.classList.contains('hidden')) {
@@ -81,17 +96,8 @@ export class LightsComponent implements OnInit {
     }
   }
 
-  getFromStorage() {
-    this.favorites = this.myStorage.getSwitchesFavorite();
-  }
-
-  setStorage(favorite) {
-    this.myStorage.setSwitchesFavorite(favorite);
-  }
-
   ngOnInit(): void {
     this.loading = true;
     this.setSwitches();
-    this.getFromStorage();
   }
 }
