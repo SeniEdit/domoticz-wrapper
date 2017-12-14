@@ -10,19 +10,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private myStorage: LocalstorageService) { }
 
-  test() {
-    const modal = document.getElementById('modal');
-    const overlay = document.getElementById('overlay');
-
-    if (modal.classList.contains('hidden')) {
-      modal.classList.remove('hidden');
-      overlay.classList.remove('hidden');
-    } else {
-      modal.classList.add('hidden');
-      overlay.classList.add('hidden');
-    }
-  }
-
   checkIfDarkMode() {
     const rowHeaders = document.getElementsByClassName('row header');
     const navbar = document.getElementsByClassName('navbar')[0];

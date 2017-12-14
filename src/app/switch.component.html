@@ -1,8 +1,11 @@
 
-  <a [attr.id]="light.idx" class="lightCard" [class.active]="light.Data=='On'" (click)="toggle(light)">
-    <div>
-      <span>{{light.Name}}</span><br>
-      <!-- <span style="font-weight: bold">{{this.data}}</span> -->
+  <div [attr.id]="light.idx" class="lightCard" [class.active]="light.Data=='On'" (click)="toggle(light)">
+    <div class="primary-content">
+      <span>{{light.Name}}</span>
     </div>
-  </a>
-<app-toast [class.active]="toastActive" message="Turned {{light.Name}} {{data === 'On' ? 'on' : 'off'}}"></app-toast>
+    <div class="secondary-content">
+      <span style="font-weight: bold;">{{this.data}}</span>
+    </div>
+  </div>
+<app-toast [class.active]="toastActive" message="{{message}}">
+</app-toast>

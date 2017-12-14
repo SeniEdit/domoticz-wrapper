@@ -1,14 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="row header">
+<div class="row header subheader">
   <p>Switches</p>
-  <a (click)="toggleFavorites()"><i [class.active]="favorites" class="material-icons">filter_list</i></a>
+  <a (click)="openModal()"><i [class.active]="favorites" class="material-icons">filter_list</i></a>
 </div>
   <div class="container">
     <div *ngIf="loading === true">
       <h3 class="message">Loading...</h3>
     </div>
     <div *ngIf="loading === false" class="row">
-      <div class="column s6 m3" *ngFor="let light of lights">
+      <div class="column m3" *ngFor="let light of lights">
         <div *ngIf="lights">
           <app-switch-button [light]="light" [data]="light.Data"></app-switch-button>
         </div>
@@ -21,4 +21,6 @@
       </div>
     </div>
   </div>
+  <div id="overlay" class="modal-overlay hidden"></div>
+  <app-modal id="modal" class="hidden" title="Filter switches" content="Filter switches"></app-modal>
   <app-toast [class.active]="toastActive" message="{{favorites === true ? 'Show favorite switches only' : 'Show all switches'}}"></app-toast>

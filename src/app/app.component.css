@@ -1,5 +1,5 @@
 .container {
-  margin: 0;
+  margin: 5px 0;
 }
 
 i {
@@ -125,14 +125,14 @@ i {
 .lightCard {
   color: black;
   font-size: 22px;
-  line-height: 50px;
-  text-align: center;
-  display: block;
+  line-height: 25px;
+  display: flex;
+  justify-content: space-between;
   width: 90%;
-  height: 50px;
+  height: 25px;
   border-radius: 5px;
-  margin: 5% auto;
-  padding: 3%;
+  margin: 5px auto;
+  padding: 15px 20px;
   background-color: #f2f2f2;
   box-shadow: 0px 2px 2px 0px #7f7c7c85;
   transition: ease-in-out 0.2s;
@@ -161,6 +161,7 @@ i {
 }
 
 app-modal {
+  z-index: 999;
   visibility:visible;
   top: 5%;
   margin: 1% 5%;
@@ -201,6 +202,7 @@ app-modal.hidden {
 }
 
 .modal-overlay {
+  z-index: 998;
   visibility:visible;
   position: absolute;
   opacity: 1;
@@ -208,7 +210,7 @@ app-modal.hidden {
   left: 0;
   height: 100vh;
   width: 100vw;
-  background-color: #000000a3;
+  background-color: #000000d6;
   transition: visibility 0.2s, opacity 0.2s ease-in-out;
 }
 
@@ -255,6 +257,7 @@ app-toast {
   opacity: 0;
   color: white;
   left: 0;
+  visibility: hidden;
   bottom: 64px;
   position: fixed;
   margin: 0 auto;
@@ -266,7 +269,7 @@ app-toast {
   text-align: center;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.2s ease-in-out;
+  transition: visibility 0s, opacity 0.2s ease-in-out;
 }
 
 p.toast {
@@ -275,8 +278,8 @@ p.toast {
 
 app-toast.active {
   opacity: 1;
-  display: block;
-  transition: opacity 0.2s ease-in-out;
+  visibility: visible;
+  transition: visibility 0s, opacity 0.2s ease-in-out;
 }
 
 @media only screen and (min-width: 768px){

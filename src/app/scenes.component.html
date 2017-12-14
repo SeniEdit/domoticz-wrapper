@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="row header">
+<div class="row header subheader">
   <p>Scenes & groups</p>
   <a (click)="toggleFavorites()"><i [class.active]="favorites" class="material-icons">filter_list</i></a>
 </div>
@@ -8,7 +8,7 @@
       <h3 class="message">Loading...</h3>
     </div>
     <div *ngIf="loading === false" class="row">
-      <div class="column s6 m3" *ngFor="let scene of scenes">
+      <div class="column m3" *ngFor="let scene of scenes">
         <div *ngIf="scenes">
           <app-switch-button [light]="scene" [data]="scene.Data"></app-switch-button>
         </div>
