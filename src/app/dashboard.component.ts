@@ -15,8 +15,10 @@ export class DashboardComponent implements OnInit {
     const navbar = document.getElementsByClassName('navbar')[0];
     const navtabs = document.getElementsByClassName('navtab');
     const buttons = document.getElementsByTagName('button');
+    const modal = document.getElementsByTagName('app-modal')[0];
 
     if (this.myStorage.getDarkMode() === true) {
+      modal.classList.add('darkMode');
       document.getElementsByTagName('html')[0].classList.add('darkMode');
       for (let i = 0; i < rowHeaders.length; i++ ) {
         rowHeaders[i].classList.add('darkMode');
@@ -29,6 +31,7 @@ export class DashboardComponent implements OnInit {
       }
       navbar.classList.add('darkMode');
     } else {
+      modal.classList.remove('darkMode');
       document.getElementsByTagName('html')[0].classList.remove('darkMode');
       for (let i = 0; i < rowHeaders.length; i++ ) {
         rowHeaders[i].classList.remove('darkMode');

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { LightsComponent } from './lights.component';
 
 @Component({
   selector: 'app-modal',
@@ -8,8 +9,16 @@ import { Component, Input } from '@angular/core';
 export class ModalComponent {
   @Input() title: string;
   @Input() content: string;
+  @Input() itemType: String;
 
-  constructor() { }
+
+  constructor(private lightsComponent: LightsComponent) { }
+
+  filterBy(filterType) {
+    console.log(filterType);
+
+    this.lightsComponent.filterBy(filterType);
+  }
 
   close() {
     const modal = document.getElementById('modal');

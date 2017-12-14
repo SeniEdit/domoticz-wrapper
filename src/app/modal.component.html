@@ -1,14 +1,19 @@
 <div class="modal-wrapper">
-  <div class="title">
+  <div class="modal-title">
     <span>{{title}}</span>
   </div>
-  <div class="content">
+  <div class="modal-content">
     <p>
       {{content}}
     </p>
+    <ul class="modal-collection">
+      <li (click)="filterBy('statusOn')">Status: On</li>
+      <li (click)="filterBy('statusOff')">Status: Off</li>
+      <li (click)="filterBy('favorites')">Favorites only</li>
+      <li (click)="filterBy('all')">All {{itemType}}</li>
+    </ul>
   </div>
-  <div class="action">
-    <a (click)="close()" class="confirm">Save</a>
-    <a (click)="close()" class="confirm">Cancel</a>
+  <div class="modal-action">
+    <a (click)="close()">Close</a>
   </div>
 </div>

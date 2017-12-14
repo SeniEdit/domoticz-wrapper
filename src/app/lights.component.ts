@@ -45,6 +45,11 @@ export class LightsComponent implements OnInit {
     this.lights = this.lights.filter(this.isFavorite);
   }
 
+  public filterBy(filterType): void {
+    //this.lights.filter(filterType);
+    this.toggleFavorites();
+  }
+
   setSwitches(): void {
     this.lightingService.getAllSwitches().subscribe(lights => {
       this.allLights = lights;

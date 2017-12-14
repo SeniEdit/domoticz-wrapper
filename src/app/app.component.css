@@ -128,9 +128,9 @@ i {
   line-height: 25px;
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 80%;
   height: 25px;
-  border-radius: 5px;
+  border-radius: 3px;
   margin: 5px auto;
   padding: 15px 20px;
   background-color: #f2f2f2;
@@ -169,34 +169,60 @@ app-modal {
   border-radius: 1%;
   position: absolute;
   width: 80%;
-  height: 60vh;
+  height: 350px;
   padding: 5%;
   background-color: #F7F7F7;
-  transition: visibility 0.2s, opacity 0.2s ease-in-out;
+  transition: top 0.2s, visibility 0.2s, opacity 0.2s ease-in-out;
   box-shadow: 0px 3px 10px 0px #7f7c7c85;
+}
+
+app-modal.darkMode {
+  background-color: #3e3e3e;
+  box-shadow: 0px 3px 10px 0px #04040485;
 }
 
 app-modal.hidden {
   visibility:hidden;
   opacity: 0;
-  transition: visibility 0.2s, opacity 0.2s ease-in-out;
+  top: 10%;
+  transition: top 0.2s, visibility 0.2s, opacity 0.2s ease-in-out;
 }
 
-.modal-wrapper > .title {
+.modal-title {
   font-weight: bold;
 }
 
-.modal-wrapper > .action {
+.modal-content {
+
+}
+
+.modal-collection {
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+}
+
+.modal-collection > li {
+  border-bottom: 1px solid white;
+  margin: 10px 0;
+  display: flex;
+}
+
+.modal-action {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
   position: absolute;
   bottom: 3%;
+  right: 30px;
   width: 100%;
 }
 
-.modal-wrapper > .action > a {
+.modal-action > a {
   margin: 0 0 0 5%;
 }
 
-.modal-wrapper > .action > a.confirm {
+.modal-action > a.confirm {
   font-weight: bold;
   color: #26ab26;
 }
@@ -292,10 +318,10 @@ app-toast.active {
   }
 
   .column.m3 {
-    width: 25%!important;
+    width: 33%!important;
   }
 
   .container {
-    margin: 0 10%;
+    margin: 0 5%;
   }
 }
