@@ -14,13 +14,16 @@ export class ModalComponent {
   close() {
     const modal = document.getElementById('modal');
     const overlay = document.getElementById('overlay');
+    const body = document.getElementsByTagName('body')[0];
 
     if (modal.classList.contains('hidden')) {
       modal.classList.remove('hidden');
       overlay.classList.remove('hidden');
+      body.style.overflow = 'hidden';
     } else {
       modal.classList.add('hidden');
       overlay.classList.add('hidden');
+      body.style.overflowY = 'scroll';
     }
   }
 }

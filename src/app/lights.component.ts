@@ -72,7 +72,7 @@ export class LightsComponent implements OnInit {
     } else {
       modal.classList.add('hidden');
       overlay.classList.add('hidden');
-      body.style.overflow = 'scroll';
+      body.style.overflowY = 'scroll';
     }
   }
 
