@@ -81,7 +81,6 @@ export class LightsComponent implements OnInit {
 
   toggleModal() {
     const modal = document.getElementById('switch-modal');
-    console.log(modal);
     const overlay = document.getElementById('switch-overlay');
     const body = document.getElementsByTagName('body')[0];
 

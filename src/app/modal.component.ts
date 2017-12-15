@@ -23,15 +23,19 @@ export class ModalComponent {
 
   close() {
     const modals = document.getElementsByTagName('app-modal');
-    const overlay = document.getElementById('overlay');
+    const overlays = document.getElementsByClassName('modal-overlay');
     const body = document.getElementsByTagName('body')[0];
 
     for (let i = 0; i < modals.length; i++) {
       if (!modals[i].classList.contains('hidden')) {
         modals[i].classList.add('hidden');
-        overlay.classList.add('hidden');
-        body.style.overflowY = 'scroll';
       }
     }
+    for (let i = 0; i < overlays.length; i++) {
+      if (!overlays[i].classList.contains('hidden')) {
+        overlays[i].classList.add('hidden');
+      }
+    }
+    body.style.overflowY = 'scroll';
   }
 }
