@@ -19,23 +19,26 @@ export class ModalComponent {
     } else if (this.itemType === 'scenes') {
       this.scenesComponent.filterBy(filterType);
     }
+    this.close();
+  }
+
+  open() {
+    const modal = document.getElementById(`${this.itemType}-modal`);
+    const overlay = document.getElementById(`${this.itemType}-overlay`);
+    const body = document.getElementsByTagName('body')[0];
+
+    modal.classList.remove('hidden');
+    overlay.classList.remove('hidden');
+    body.style.overflowY = 'hidden';
   }
 
   close() {
-    const modals = document.getElementsByTagName('app-modal');
-    const overlays = document.getElementsByClassName('modal-overlay');
+    const modal = document.getElementById(`${this.itemType}-modal`);
+    const overlay = document.getElementById(`${this.itemType}-overlay`);
     const body = document.getElementsByTagName('body')[0];
 
-    for (let i = 0; i < modals.length; i++) {
-      if (!modals[i].classList.contains('hidden')) {
-        modals[i].classList.add('hidden');
-      }
-    }
-    for (let i = 0; i < overlays.length; i++) {
-      if (!overlays[i].classList.contains('hidden')) {
-        overlays[i].classList.add('hidden');
-      }
-    }
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
     body.style.overflowY = 'scroll';
   }
 }

@@ -160,14 +160,14 @@ i {
   margin: 1em;
 }
 
-app-modal {
+.modal-wrapper {
   z-index: 999;
   visibility:visible;
   top: 5%;
   margin: 1% 5%;
   opacity: 1;
   border-radius: 1%;
-  position: absolute;
+  position: fixed;
   width: 80%;
   height: 350px;
   padding: 5%;
@@ -176,12 +176,12 @@ app-modal {
   box-shadow: 0px 3px 10px 0px #7f7c7c85;
 }
 
-app-modal.darkMode {
+.modal-wrapper.darkMode {
   background-color: #3e3e3e;
   box-shadow: 0px 3px 10px 0px #04040485;
 }
 
-app-modal.hidden {
+.modal-wrapper.hidden {
   visibility:hidden;
   opacity: 0;
   top: 10%;
@@ -230,7 +230,7 @@ app-modal.hidden {
 .modal-overlay {
   z-index: 998;
   visibility:visible;
-  position: absolute;
+  position: fixed;
   opacity: 1;
   top: 0;
   left: 0;

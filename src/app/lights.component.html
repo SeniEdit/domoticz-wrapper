@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="row header subheader">
-  <p>Switches</p>
-  <a (click)="toggleModal()"><i [class.active]="filtered" class="material-icons">filter_list</i></a>
+  <p>Devices</p>
+  <a (click)="modal.open()"><i [class.active]="filtered" class="material-icons">filter_list</i></a>
 </div>
   <div class="container">
     <div *ngIf="loading === true">
@@ -21,6 +21,5 @@
       </div>
     </div>
   </div>
-  <div id="switch-overlay" class="modal-overlay hidden" (click)="toggleModal()"></div>
-  <app-modal id="switch-modal" class="hidden" title="Filter switches" itemType="switches"></app-modal>
+  <app-modal title="Filter switches" itemType="switches" #modal></app-modal>
   <app-toast [class.active]="toastActive" message="{{message}}"></app-toast>

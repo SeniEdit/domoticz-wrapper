@@ -15,7 +15,9 @@ export class DashboardComponent implements OnInit {
     const navbar = document.getElementsByClassName('navbar')[0];
     const navtabs = document.getElementsByClassName('navtab');
     const buttons = document.getElementsByTagName('button');
-    const modals = document.getElementsByTagName('app-modal');
+    const modals = document.getElementsByClassName('modal-wrapper');
+
+    console.log(modals);
 
     if (this.myStorage.getDarkMode() === true) {
       document.getElementsByTagName('html')[0].classList.add('darkMode');

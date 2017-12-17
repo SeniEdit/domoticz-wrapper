@@ -65,23 +65,6 @@ export class ScenesComponent implements OnInit {
           break;
         }
     });
-    this.toggleModal();
-  }
-
-  toggleModal() {
-    const modal = document.getElementById('scene-modal');
-    const overlay = document.getElementById('scene-overlay');
-    const body = document.getElementsByTagName('body')[0];
-
-    if (modal.classList.contains('hidden')) {
-      modal.classList.remove('hidden');
-      overlay.classList.remove('hidden');
-      body.style.overflow = 'hidden';
-    } else {
-      modal.classList.add('hidden');
-      overlay.classList.add('hidden');
-      body.style.overflowY = 'scroll';
-    }
   }
 
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="row header subheader">
   <p>Scenes & groups</p>
-  <a (click)="toggleModal()"><i [class.active]="filtered" class="material-icons">filter_list</i></a>
+  <a (click)="modal.open()"><i [class.active]="filtered" class="material-icons">filter_list</i></a>
 </div>
   <div class="container">
     <div *ngIf="loading === true">
@@ -21,6 +21,5 @@
       </div>
     </div>
   </div>
-  <div id="scene-overlay" class="modal-overlay hidden" (click)="toggleModal()"></div>
-  <app-modal id="scene-modal" class="hidden" title="Filter scenes" itemType="scenes"></app-modal>
+  <app-modal title="Filter scenes" itemType="scenes" #modal></app-modal>
   <app-toast [class.active]="toastActive" message="{{message}}"></app-toast>
