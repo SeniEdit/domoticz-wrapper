@@ -15,10 +15,12 @@ export class NavbarComponent implements OnInit {
     if (event instanceof NavigationStart) {
         const thisTab = document.getElementById('tab' + event.url);
         const allTabs = document.querySelectorAll('.navtab');
-        for (let i = 0; i < allTabs.length; i++) {
-          allTabs[i].classList.remove('active');
+        if (thisTab) {
+          for (let i = 0; i < allTabs.length; i++) {
+            allTabs[i].classList.remove('active');
+          }
+          thisTab.classList.add('active');
         }
-        thisTab.classList.add('active');
       }
     });
   }
@@ -48,7 +50,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     for (let i = 0; i < this.router.config.length; i++) {
-      if (this.router.config[i].path !== '**') {
+      if (typeof this.router.config[i].data !== 'undefined') {
         this.tabs.push(this.router.config[i]);
       }
     }

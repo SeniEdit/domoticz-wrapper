@@ -7,6 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard.component';
+import { StatsComponent } from './stats.component';
+import { StatsDetailComponent } from './statsdetail.component';
 import { LightsComponent } from './lights.component';
 import { ScenesComponent } from './scenes.component';
 import { SwitchComponent } from './switch.component';
@@ -19,13 +21,17 @@ import { NavbarComponent } from './navbar.component';
 import { SettingsComponent } from './settings.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, data: {icon: 'home'} },
+  { path: '', component: DashboardComponent, data: {icon: 'dashboard'} },
+  { path: 'stats', component: StatsComponent, data: {icon: 'show_chart'}},
+  { path: 'stats/:idx', component: StatsDetailComponent},
   { path: 'settings', component: SettingsComponent, data: {icon: 'settings'} },
   { path: '**', component: DashboardComponent }]; // 404
 
 @NgModule({
   declarations: [
     AppComponent,
+    StatsComponent,
+    StatsDetailComponent,
     SwitchComponent,
     NavbarComponent,
     SettingsComponent,
