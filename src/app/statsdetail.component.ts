@@ -30,12 +30,12 @@ export class StatsDetailComponent implements OnInit {
   populateChart() {
     let color;
     for (let i = 0; i < 2; i++) {
-      color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+      color = '#' + Math.floor(Math.random() * 16777215).toString(16) + '6b';
       this.randomColorsForKeys.push(color);
     }
 
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: this.dataSetOnKeys.reverse(),
@@ -43,22 +43,25 @@ export class StatsDetailComponent implements OnInit {
           label: 'Times turned on',
           data: this.dataSetOnValues.reverse(),
           backgroundColor: this.randomColorsForKeys[0],
-          borderColor: this.randomColorsForKeys[0],
-          borderWidth: 1
-        },{
+          borderColor: 'black',
+          borderWidth: 1,
+          radius: 5,
+        }, {
           label: 'Times turned off',
           data: this.dataSetOffValues.reverse(),
           backgroundColor: this.randomColorsForKeys[1],
-          borderColor: this.randomColorsForKeys[1],
-          borderWidth: 1
+          borderColor: 'black',
+          borderWidth: 1,
+          radius: 5
         }]
       },
       options: {
+        responsive: true,
         scales: {
           yAxes: [{
-            stacked:true,
+            stacked: true,
             ticks: {
-              beginAtZero:true
+              beginAtZero: true
             }
           }]
         }
@@ -107,6 +110,7 @@ export class StatsDetailComponent implements OnInit {
   }
 
   getLightFromParams(): void {
+    this.loading = true;
     const idx = +this.route.snapshot.paramMap.get('idx');
     this.lightingService.getSwitch(idx)
     .subscribe(response => {
@@ -117,8 +121,8 @@ export class StatsDetailComponent implements OnInit {
   }
 
   getSwitchLog(idx): void {
-    let datesOn = [];
-    let datesOff = [];
+    const datesOn = [];
+    const datesOff = [];
 
     this.lightingService.getSwitchLog(idx).subscribe(log => {
       this.logs = log.result;
@@ -136,13 +140,12 @@ export class StatsDetailComponent implements OnInit {
 
       let tempArr = [];
       for (let i = 0; i < datesOn.length; i++) {
-        let date = datesOn[i];
-        // this.dataSetOn[date] = this.dataSetOn[date] ? this.dataSetOn[date] + 1 : 1;
+        const date = datesOn[i];
         this.dataSetOn[date] = this.dataSetOn[date] ? this.dataSetOn[date] + 1 : 1;
         tempArr = this.dataSetOn;
       }
       for (let i = 0; i < datesOff.length; i++) {
-        let date = datesOff[i];
+        const date = datesOff[i];
         this.dataSetOff[date] = this.dataSetOff[date] ? this.dataSetOff[date] + 1 : 1;
       }
 
@@ -154,6 +157,7 @@ export class StatsDetailComponent implements OnInit {
       this.dataSetOffValues = Object.values(this.dataSetOff);
 
       this.populateChart();
+      this.loading = false;
     });
   }
 

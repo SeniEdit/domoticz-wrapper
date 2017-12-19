@@ -63,6 +63,7 @@ i {
 }
 
 .row.header {
+  z-index: 1;
   top: 0px;
   position: sticky;
   font-family: Raleway;
@@ -83,11 +84,13 @@ i {
 }
 
 .row.header > a > i {
+  color: white;
   line-height: 41px;
   transition: ease-in-out 0.2s;
 }
 
 .row.header > span > i {
+  color: white;
   line-height: 48px;
   margin-left: 1em;
   text-align: center;
@@ -215,6 +218,15 @@ i {
   flex-direction: column;
 }
 
+.collection {
+  margin: 15px 0 0 5%;
+}
+
+.collection > .collection-item {
+  padding: 5px;
+  border-bottom: none;
+}
+
 .collection-item {
   border-bottom: 1px solid white;
   margin: 10px 0;
@@ -323,7 +335,8 @@ app-toast.active {
 }
 
 .chart-container {
-  height: 100%;
+  height: 100%!important;
+  width: 100%!important;
 }
 
 @media only screen and (min-width: 768px){
@@ -341,6 +354,11 @@ app-toast.active {
 
   .column.m6 {
     width: 50%!important;
+  }
+
+  .chart-container {
+    height: 100%!important;
+    width: 33%!important;
   }
 
   .container {

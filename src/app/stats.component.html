@@ -6,8 +6,12 @@
 </div>
 <div class="container">
   <div class="row">
-    <div *ngFor="let light of lights" class="column">
-      <span routerLink="/stats/{{light.idx}}">{{light.Name}} {{light.idx}}</span><br>
+    <div class="column">
+      <div class="collection">
+        <div *ngFor="let light of lights" routerLink="/stats/{{light.idx}}" class="collection-item">
+          <span>{{light.Name}} {{light.idx}}</span><br>
+        </div>
+      </div>
     </div>
   </div>
 </div>
