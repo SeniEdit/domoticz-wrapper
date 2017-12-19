@@ -8,8 +8,9 @@
   <div class="row">
     <div class="column">
       <div class="collection">
-        <div *ngFor="let light of lights" routerLink="/stats/{{light.idx}}" class="collection-item">
-          <span>{{light.Name}} {{light.idx}}</span><br>
+        <div *ngFor="let light of lights" routerLink="/statistics/{{light.idx}}" class="collection-item">
+          <i class="material-icons">show_chart</i>
+          <span>{{light.Name}}</span><br>
         </div>
       </div>
     </div>

@@ -2,7 +2,35 @@
   <span routerLink="/{{parentRoute}}"><i class="material-icons">keyboard_arrow_left</i></span>
   <h4>{{light?.Name}}</h4>
 </div>
-<h4 *ngIf="loading === true">Loading...</h4>
-<div class="chart-container">
-  <canvas id="myChart" height="300px" width="300px"></canvas>
+<div class="row">
+  <div class="row header subheader">
+    <p>Visualization</p>
+  </div>
+  <h4 *ngIf="loading === true">Loading...</h4>
+  <div class="chart-container">
+    <canvas id="myChart" height="400px" width="300px"></canvas>
+  </div>
+  <div class="row header subheader">
+    <p>Tabular data</p>
+    <a (click)="downloadCSV()"><i class="material-icons">file_download</i> Full log (CSV)</a>
+  </div>
+  <div class="column">
+    <h4 *ngIf="loading === true">Loading...</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Times turned on</th>
+          <th>Times turned off</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of tempArr">
+          <td>{{data.date}}</td>
+          <td>{{data.dataOn}}</td>
+          <td>{{data.dataOff}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

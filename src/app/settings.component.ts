@@ -54,6 +54,7 @@ export class SettingsComponent implements OnInit {
     const navbar = document.getElementsByClassName('navbar')[0];
     const navtabs = document.getElementsByClassName('navtab');
     const buttons = document.getElementsByTagName('button');
+    const th = document.getElementsByTagName('th');
 
     if (this.myStorage.getDarkMode() === true) {
       document.getElementsByTagName('html')[0].classList.add('darkMode');
@@ -66,6 +67,9 @@ export class SettingsComponent implements OnInit {
       for (let i = 0; i < navtabs.length; i++) {
         navtabs[i].classList.add('darkMode');
       }
+      for (let i = 0; i < th.length; i++) {
+        th[i].classList.add('darkMode');
+      }
       navbar.classList.add('darkMode');
     } else {
       document.getElementsByTagName('html')[0].classList.remove('darkMode');
@@ -77,6 +81,9 @@ export class SettingsComponent implements OnInit {
       }
       for (let i = 0; i < navtabs.length; i++) {
         navtabs[i].classList.remove('darkMode');
+      }
+      for (let i = 0; i < th.length; i++) {
+        th[i].classList.remove('darkMode');
       }
       navbar.classList.remove('darkMode');
     }

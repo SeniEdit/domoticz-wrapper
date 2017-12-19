@@ -22,8 +22,8 @@ import { SettingsComponent } from './settings.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, data: {icon: 'dashboard'} },
-  { path: 'stats', component: StatsComponent, data: {icon: 'show_chart'}},
-  { path: 'stats/:idx', component: StatsDetailComponent},
+  { path: 'statistics', component: StatsComponent, data: {icon: 'insert_chart'}},
+  { path: 'statistics/:idx', component: StatsDetailComponent},
   { path: 'settings', component: SettingsComponent, data: {icon: 'settings'} },
   { path: '**', component: DashboardComponent }]; // 404
 
